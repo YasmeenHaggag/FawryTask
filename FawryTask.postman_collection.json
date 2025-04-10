@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "1c62f4ad-43e5-4fdc-ab45-75f37b21b813",
+		"name": "FawryTask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39509098"
+	},
+	"item": [
+		{
+			"name": "SearchByTitle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/api/v1/movies/search?title=batman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"search"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "batman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddMovie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJubSIsImlkIjoiOGY5MTU1NDctODM2Zi00NDY1LWEyZTMtYTNjNTg0ZmI1NWM0Iiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE3NDQzMTc5NTAsImV4cCI6MTc0NDMyMTU1MH0.U1GmeLs9ItioE__zE4bNGbYUfd35yt--9OycX6S8_6w"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"title\":\"jk\",\r\n     \"year\":5677,\r\n     \"type\":\"jjjjjjj\",\r\n    \"actors\":\"Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page\",\r\n    \"awards\":\"Won 4 Oscars. 159 wins & 220 nominations total\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8091/api/v1/movies"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJubSIsImlkIjoiOGY5MTU1NDctODM2Zi00NDY1LWEyZTMtYTNjNTg0ZmI1NWM0Iiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE3NDQzMTc5NTAsImV4cCI6MTc0NDMyMTU1MH0.U1GmeLs9ItioE__zE4bNGbYUfd35yt--9OycX6S8_6w"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8091/api/v1/movies/4"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllMovies",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"John\",\r\n    \"password\":\"John1278\",\r\n    \"roleId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8090/api/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Nora\",\r\n    \"password\":\"4519075\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8090/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "GetByTitle",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Regular_user Login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movie by title from DB",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
