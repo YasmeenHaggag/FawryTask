@@ -33,35 +33,78 @@ public class MovieService {
         this.restTemplate = new RestTemplate();
     }
 
-    public List<MovieResponseDTO> searchMovie(String title) {
-        String url = String.format("%s?s=%s&apikey=%s", omdbApiUrl, title, API_KEY);
-//        http://www.omdbapi.com/?t=Inception&y=2010
-        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-                url,
+//    public List<MovieResponseDTO> searchMovie(String id) {
+//        String url = String.format("https://www.omdbapi.com/?i=%s&apikey=%s", id, API_KEY);
+//        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+//                url,
+//                HttpMethod.GET,
+//                null,
+//                new ParameterizedTypeReference<Map<String, Object>>() {
+//                }
+//        );
+//
+//        Map<String, Object> responseBody = response.getBody();
+//        if (responseBody != null && "True".equals(responseBody.get("Response"))) {
+//            List<Map<String, Object>> searchResults =
+//                    (List<Map<String, Object>>) responseBody.get("Search");
+//            List<MovieResponseDTO> movies = new ArrayList<>();
+//            for (Map<String, Object> result : searchResults) {
+//                MovieResponseDTO dto = new MovieResponseDTO();
+//                dto.setTitle((String) result.get("Title"));
+//                dto.setYear((String) result.get("Year"));
+//                dto.setActors((String) result.get("Actors"));
+//                dto.setAwards((String) result.get("Awards"));
+//                movies.add(dto);
+//            }
+//            return movies;
+//            } else{
+//                throw new RuntimeException("No movie found or invalid response");
+//            }
+//        }
+
+    public List<MovieResponseDTO> searchMoviesByTitle(String title) {
+        String searchUrl = String.format("%s?s=%s&apikey=%s", omdbApiUrl, title, API_KEY);
+        ResponseEntity<Map<String, Object>> searchResponse = restTemplate.exchange(
+                searchUrl,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<Map<String, Object>>() {
-                }
+                new ParameterizedTypeReference<>() {}
         );
 
-        Map<String, Object> responseBody = response.getBody();
-        if (responseBody != null && "True".equals(responseBody.get("Response"))) {
-            List<Map<String, Object>> searchResults =
-                    (List<Map<String, Object>>) responseBody.get("Search");
+        Map<String, Object> searchBody = searchResponse.getBody();
+        if (searchBody != null && "True".equals(searchBody.get("Response"))) {
+            List<Map<String, Object>> searchResults = (List<Map<String, Object>>) searchBody.get("Search");
             List<MovieResponseDTO> movies = new ArrayList<>();
+
             for (Map<String, Object> result : searchResults) {
-                MovieResponseDTO dto = new MovieResponseDTO();
-                dto.setTitle((String) result.get("Title"));
-                dto.setYear((String) result.get("Year"));
-                dto.setActors((String) result.get("actors"));
-                dto.setAwards((String) result.get("awards"));
-                movies.add(dto);
+                String imdbID = (String) result.get("imdbID");
+
+                String detailsUrl = String.format("%s?i=%s&apikey=%s", omdbApiUrl, imdbID, API_KEY);
+                ResponseEntity<Map<String, Object>> detailResponse = restTemplate.exchange(
+                        detailsUrl,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<>() {}
+                );
+
+                Map<String, Object> details = detailResponse.getBody();
+                if (details != null && "True".equals(details.get("Response"))) {
+                    MovieResponseDTO dto = new MovieResponseDTO();
+                    dto.setTitle((String) details.get("Title"));
+                    dto.setYear((String) details.get("Year"));
+                    dto.setType((String) details.get("Type"));
+                    dto.setActors((String) details.get("Actors"));
+                    dto.setAwards((String) details.get("Awards"));
+                    movies.add(dto);
+                }
             }
             return movies;
-            } else{
-                throw new RuntimeException("No movie found or invalid response");
-            }
+        } else {
+            throw new RuntimeException("No movie found or invalid response");
         }
+    }
+
+
 
 
 
@@ -72,5 +115,9 @@ public class MovieService {
 
     public Movie findByTitle(String title) {
         return movieRepository.getMovieByTitle(title);
+    }
+
+    public int getMovieIdByTitle(String title){
+        return movieRepository.getMovieByTitle(title).getId();
     }
 }

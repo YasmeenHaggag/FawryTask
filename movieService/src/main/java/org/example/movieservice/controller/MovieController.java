@@ -35,7 +35,7 @@ public class MovieController {
 
     @GetMapping("/search")
     public ResponseEntity<List<MovieResponseDTO>> searchMovie(@RequestParam String title){
-        List<MovieResponseDTO >response = movieService.searchMovie(title);
+        List<MovieResponseDTO >response = movieService.searchMoviesByTitle(title);
         return ResponseEntity.ok(response);
     }
 
@@ -69,6 +69,11 @@ public class MovieController {
     public ResponseEntity<Movie> getByTitle(@PathVariable String title) {
         Movie movies = movieService.findByTitle(title);
         return ResponseEntity.ok(movies);
+    }
+
+    @GetMapping("/getMovieIdByTitle")
+    public int getMovieIdByTitle(@RequestParam String title){
+        return movieService.getMovieIdByTitle(title);
     }
 
 }

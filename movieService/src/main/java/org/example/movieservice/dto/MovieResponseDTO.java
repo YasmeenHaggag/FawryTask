@@ -16,7 +16,6 @@ public class MovieResponseDTO {
     private String actors;
     private String awards;
 
-
     public String getTitle() {
         return title;
     }
@@ -24,6 +23,9 @@ public class MovieResponseDTO {
     public void setTitle(String title) {
         this.title = title;
     }
+
+
+
 
     public String getYear() {
         return year;

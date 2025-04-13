@@ -1,0 +1,11 @@
+<div *ngFor="let movie of movies">
+  <div>
+    <h3>{{ movie.title }}</h3>
+    <button (click)="getMovieDetails(movie.title)">Get Details</button>
+  </div>
+
+  <div *ngIf="movieDetails[movie.title]">
+    <h4>Details for {{ movie.title }}</h4>
+    <pre>{{ movieDetails[movie.title] | json }}</pre> <!-- Display the details as JSON -->
+  </div>
+</div>

@@ -35,7 +35,7 @@ public class AuthController {
     public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
-    
+
     @PostMapping("/refresh-token")
     public Map<String,String> refreshToken(HttpServletRequest request,
                                            HttpServletResponse response)
@@ -56,6 +56,11 @@ public class AuthController {
         System.out.println(token);
         System.out.println(role);
         return ResponseEntity.ok(new UserInfoDTO(username, role));
+    }
+
+    @GetMapping("/extract-role")
+    public String extractRoleFromToken(@RequestParam String token){
+        return jwtService.extractRole(token);
     }
 
 
