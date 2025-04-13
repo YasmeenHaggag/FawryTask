@@ -3,14 +3,6 @@
   <button (click)="searchMovies()">Search</button>
 </div>
 
-<!--<div *ngIf="movies.length > 0">-->
-<!--  <h3>Results:</h3>-->
-<!--  <ul>-->
-<!--    <li *ngFor="let movie of movies">-->
-<!--      {{ movie.title }} ({{ movie.year }})-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
 <div *ngFor="let movie of movies">
   <p>{{ movie.title }} ({{ movie.year }})</p>
   <button (click)="addMovie(movie)">Add</button>

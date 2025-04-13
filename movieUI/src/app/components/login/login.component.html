@@ -1,17 +1,7 @@
-<!--<p>login works!</p>-->
+
 
 <h2>Login</h2>
-<!--<form (ngSubmit)="onLogin()" #loginForm="ngForm">-->
-<!--  <label for="username">Username:</label>-->
-<!--  <input type="text" id="username" required [(ngModel)]="username" name="username"> <br> <br>-->
 
-<!--  <label for="password">Password:</label>-->
-<!--  <input type="password" id="password" required [(ngModel)]="password" name="password"> <br> <br>-->
-
-<!--  <button type="submit">Login</button>-->
-
-<!--  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>-->
-<!--</form>-->
 <div class="login-container">
   <form class="login-form" (ngSubmit)="onLogin()" #loginForm="ngForm">
     <h2>Login</h2>
@@ -27,31 +17,5 @@
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </form>
 </div>
-
-<!--<ul *ngIf="movieTitles.length > 0">-->
-<!--  <h3>Movie Titles:</h3>-->
-<!--  <li *ngFor="let title of movieTitles">{{ title }}</li>-->
-<!--</ul>-->
-
-
-<!--<ul *ngIf="movieTitles.length > 0">-->
-<!--  <h3>Movie Titles:</h3>-->
-<!--  <li *ngFor="let title of movieTitles">-->
-<!--&lt;!&ndash;    {{ title }}&ndash;&gt;-->
-<!--&lt;!&ndash;    <button (click)="getMovieDetails(title)">View Details</button>&ndash;&gt;-->
-<!--    <div style="display: flex; align-items: center; gap: 10px;">-->
-<!--      <span>{{ title }}</span>-->
-<!--      <button (click)="getMovieDetails(title)">View Details</button>-->
-<!--    </div>-->
-
-<!--    <div *ngIf="movieDetails[title]">-->
-<!--      <p><strong>Year:</strong> {{ movieDetails[title].year }}</p>-->
-<!--      <p><strong>Type:</strong> {{ movieDetails[title].type }}</p>-->
-<!--      <p><strong>Actors:</strong> {{ movieDetails[title].actors }}</p>-->
-<!--      <p><strong>Awards:</strong> {{ movieDetails[title].awards }}</p>-->
-<!--    </div>-->
-
-<!--  </li>-->
-<!--</ul>-->
 
 

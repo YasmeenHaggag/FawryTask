@@ -61,40 +61,6 @@ export class LoginComponent {
   }
 
 
-  // this.http.post<any>('http://localhost:8090/api/auth/login', loginData)
-      //   .subscribe({
-      //     next: (response) => {
-      //       const token = response['Access-token'];
-      //       // const token = response.accessToken;
-      //       if (token) {
-      //         localStorage.setItem('Access-token', token);
-      //
-      //         // Now get the user's role
-      //         const headers = { Authorization: `Bearer ${token}` };
-      //         this.http.get<{ role: string }>('http://localhost:8090/api/auth/extract-role?token=${token}`)
-      //           .subscribe({
-      //             next: (roleResponse) => {
-      //               const userRole = roleResponse.role;
-      //               console.log(userRole);
-      //               if (userRole === 'ROLE_ADMIN') {
-      //                 this.router.navigate(['/admin-dashboard']);
-      //               } else {
-      //                 this.router.navigate(['/user-dashboard']);
-      //               }
-      //             },
-      //             error: () => {
-      //               this.errorMessage = 'Failed to get user role.';
-      //             }
-      //           });
-    //         }
-    //       },
-    //       error: () => {
-    //         this.errorMessage = 'Invalid username or password.';
-    //       }
-    //     });
-    // }
-
-
     getMovieDetails(title: string) {
     this.http.get<any>(`http://localhost:8091/api/v1/movies/${encodeURIComponent(title)}`)
       .subscribe({

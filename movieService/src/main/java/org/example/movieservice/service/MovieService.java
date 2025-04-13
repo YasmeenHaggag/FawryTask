@@ -33,34 +33,6 @@ public class MovieService {
         this.restTemplate = new RestTemplate();
     }
 
-//    public List<MovieResponseDTO> searchMovie(String id) {
-//        String url = String.format("https://www.omdbapi.com/?i=%s&apikey=%s", id, API_KEY);
-//        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-//                url,
-//                HttpMethod.GET,
-//                null,
-//                new ParameterizedTypeReference<Map<String, Object>>() {
-//                }
-//        );
-//
-//        Map<String, Object> responseBody = response.getBody();
-//        if (responseBody != null && "True".equals(responseBody.get("Response"))) {
-//            List<Map<String, Object>> searchResults =
-//                    (List<Map<String, Object>>) responseBody.get("Search");
-//            List<MovieResponseDTO> movies = new ArrayList<>();
-//            for (Map<String, Object> result : searchResults) {
-//                MovieResponseDTO dto = new MovieResponseDTO();
-//                dto.setTitle((String) result.get("Title"));
-//                dto.setYear((String) result.get("Year"));
-//                dto.setActors((String) result.get("Actors"));
-//                dto.setAwards((String) result.get("Awards"));
-//                movies.add(dto);
-//            }
-//            return movies;
-//            } else{
-//                throw new RuntimeException("No movie found or invalid response");
-//            }
-//        }
 
     public List<MovieResponseDTO> searchMoviesByTitle(String title) {
         String searchUrl = String.format("%s?s=%s&apikey=%s", omdbApiUrl, title, API_KEY);
